@@ -3,6 +3,7 @@ import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteData, TagData, Tag } from "./App";
+import ReactMarkdown from "react-markdown";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -82,6 +83,14 @@ export default function NoteForm({
           </Col>
         </Row>
         <Row>
+          <Col className=''>
+            <Form.Group className='h-100' controlId='markdown-preview'>
+              <Form.Label>Preview:</Form.Label>
+              <ReactMarkdown className='border rounded p-2 markdown-preview'>
+                {noteMarkdown}
+              </ReactMarkdown>
+            </Form.Group>
+          </Col>
           <Col>
             <Form.Group controlId='markdown'>
               <Form.Label>Body</Form.Label>
@@ -90,6 +99,7 @@ export default function NoteForm({
                 onChange={(e) => setNoteMarkdown(e.target.value)}
                 required
                 as='textarea'
+                className='textarea-no-resize'
                 rows={15}
               />
             </Form.Group>

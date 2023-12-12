@@ -11,6 +11,8 @@ const TagController = {
     },
     add: async (req, res) => {
         const newTag = new TagModel(req.body);
+        newTag.createdAt = Date.now();
+        newTag.updatedAt = Date.now();
         const savedTag = await newTag.save();
         res.json(savedTag);
     },
@@ -18,6 +20,7 @@ const TagController = {
         const newTag = new TagModel(req.body);
         const tag = await TagModel.findById(req.params.id);
         tag.label = newTag.label;
+        tag.updatedAt = Date.now();
         const savedTag = await tag.save();
         res.json(savedTag);
     },

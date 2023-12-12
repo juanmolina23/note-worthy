@@ -71,6 +71,7 @@ function App() {
   async function getAllNotes() {
     const response: Response = await APICall.get("http://localhost:3000/notes");
     const data: Note[] = await response.json();
+    console.log(data[0]);
     setNotesDB([...data]);
   }
 

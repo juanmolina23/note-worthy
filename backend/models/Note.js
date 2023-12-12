@@ -12,7 +12,9 @@ const NoteSchema = new mongoose.Schema({
   tags: [{
     type: mongoose.Types.ObjectId,
     ref: "Tag"
-  }]
+  }],
+  createdAt: Date,
+  updatedAt: Date
 });
 
 const Note = mongoose.model("Note", NoteSchema);

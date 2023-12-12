@@ -11,6 +11,8 @@ const NoteController = {
     },
     add: async (req,res) => {
         const newNote = new NoteModel(req.body);
+        newNote.createdAt = Date.now();
+        newNote.updatedAt = Date.now();
         const savedNote = await newNote.save();
         res.json(await savedNote.populate("tags"));
     },
@@ -20,6 +22,7 @@ const NoteController = {
         note.title = newNote.title;
         note.markdown = newNote.markdown;
         note.tags = newNote.tags;
+        note.updatedAt = Date.now();
         const savedNote = await note.save();
         res.json(savedNote);
     },
